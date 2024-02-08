@@ -1,0 +1,12 @@
+// credentials for wifi and mqtt
+
+#define WIFI_NETWORK_NAME "your_wifi"
+#define WIFI_PASSWORD "your_pw"
+
+#define MQTT_SERVER "ip-adress"
+#define MQTT_PORT 1883
+#define MQTT_CLIENT_NAME "client_name"
+#define MQTT_USER "your_user-name"
+#define MQTT_PASSWORD "your-pw"
+#define MQTT_TOPIC_COLOR "objekt/sleep_traffic_light/color"
+
