@@ -23,25 +23,30 @@ action:
     then:
       - service: mqtt.publish
         data:
-          qos: "1"
           topic: objekt/sleep_traffic_light/color
           payload: RED
-  - if:
-      - condition: time
-        after: input_datetime.tom_timer_gelb_nach
-        before: input_datetime.tom_timer_gruen_nach
-    then:
-      - service: mqtt.publish
-        data:
+          retain: true
           qos: "1"
-          topic: objekt/sleep_traffic_light/color
-          payload: YELLOW
     else:
-      - service: mqtt.publish
-        data:
-          qos: "1"
-          topic: objekt/sleep_traffic_light/color
-          payload: GREEN
+      - if:
+          - condition: time
+            after: input_datetime.tom_timer_gelb_nach
+            before: input_datetime.tom_timer_gruen_nach
+        then:
+          - service: mqtt.publish
+            data:
+              qos: "1"
+              topic: objekt/sleep_traffic_light/color
+              payload: YELLOW
+              retain: true
+        else:
+          - service: mqtt.publish
+            data:
+              qos: "1"
+              topic: objekt/sleep_traffic_light/color
+              payload: GREEN
+              retain: true
 mode: single
+
 
 ```
